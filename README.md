@@ -1,2 +1,2 @@
 # laravel-nodejs-redis-queue
-Push Laravel Jobs to redis queue from NodeJs App
+Push Laravel jobs to redis queue from NodeJs App

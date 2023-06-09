@@ -1,0 +1,32 @@
+{
+  "name": "@lessmore92/laravel-nodejs-redis-queue",
+  "version": "1.0.0",
+  "description": "Push Laravel jobs to redis queue from NodeJs App",
+  "main": "index.js",
+  "dependencies": {
+    "php-serialize": "^4.1.1"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/lessmore92/laravel-nodejs-redis-queue.git"
+  },
+  "keywords": [
+    "laravel",
+    "nodejs",
+    "node",
+    "redis",
+    "queue",
+    "job",
+    "push"
+  ],
+  "author": "lessmore92",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/lessmore92/laravel-nodejs-redis-queue/issues"
+  },
+  "homepage": "https://github.com/lessmore92/laravel-nodejs-redis-queue#readme"
+}
