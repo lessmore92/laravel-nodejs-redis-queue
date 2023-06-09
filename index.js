@@ -20,22 +20,30 @@ class Queue extends EventEmitter {
         this.queue = queue;
     }
 
-    push(name, object, timeout = null, delay = null) {
+    async push(name, object, timeout = null, delay = null) {
         const command = Serialize.serialize(object, this.scope);
         const uuid = crypto.randomUUID();
 
         let data = {
+            uuid: uuid,
+            displayName: name,
             job: 'Illuminate\\Queue\\CallQueuedHandler@call',
+            maxTries: null,
+            maxExceptions: null,
+            failOnTimeout: false,
+            backoff: null,
+            timeout: timeout,
+            retryUntil: null,
             data: {
                 commandName: name,
                 command,
             },
-            timeout: timeout,
-            uuid: uuid,
             id: uuid,
             attempts: 0,
-            delay: delay,
-            maxExceptions: null,
+            type: 'job',
+            tags: [],
+            silenced: false,
+            pushedAt: (Date.now() / 1000).toString()
         };
         if (this.isQueueNotify === false) {
             delete data.delay;
@@ -48,7 +56,11 @@ class Queue extends EventEmitter {
             };
         }
 
-        this.client.rpush(this.app_name + this.prefix + 'queues:' + this.queue, JSON.stringify(data), (err, replay) => {
+        if (!this.client.isOpen) {
+            await this.client.connect();
+        }
+
+        this.client.rPush(this.app_name + this.prefix + 'queues:' + this.queue, JSON.stringify(data), (err, replay) => {
             // Queue pushed
         });
     }
