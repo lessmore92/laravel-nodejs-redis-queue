@@ -1,6 +1,6 @@
 {
   "name": "@lessmore/laravel-nodejs-redis-queue",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Push Laravel jobs to redis queue from NodeJs App",
   "main": "index.js",
   "dependencies": {
